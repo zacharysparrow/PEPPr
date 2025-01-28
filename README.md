@@ -39,6 +39,10 @@ where each X corresponds to the fraction of the following base polymers used to 
 PE38 V3 - PE98 V2 - PE121 - PE198 - PE277 - PE8 V2 - PE18 - PE357 V3 - commercial degraded - post consumer degraded  
 Note that the commercial degraded and post comsumer degraded entries are not applicable for the inverse set, resulting in IDs that contain two fewer entries.
 
+## TODO
+- Reformat README
+- upload training script
+
 Inference on all of the data sets included herein should run in a matter of seconds on a standard desktop or laptop computer.
 
 We note that all ML models are stored in models/ with the .pt file extension, so no training is required to use PEPPr.
