@@ -1,5 +1,3 @@
-#!/home/sparrow/anaconda3/envs/pytorch_env/bin/python
-
 import sys
 from pathlib import Path
 import pickle
