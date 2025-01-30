@@ -49,5 +49,4 @@ If you use this repository, please cite the following work:
 **COMING SOON**
 
 ## TODO
-- upload training script
 - add reference
