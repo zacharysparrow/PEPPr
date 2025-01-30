@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+#!/home/sparrow/anaconda3/envs/pytorch_env/bin/python
+
+>>>>>>> master
 import sys
 from pathlib import Path
 import pickle
@@ -10,6 +15,11 @@ print("Input: "+sys.argv[1])
 
 n_features = 15
 n_models = 100
+<<<<<<< HEAD
+=======
+with open("ensemble_size.txt", "r") as file:
+    n_models = int(file.readline())
+>>>>>>> master
 featureids = ['x'+str(n+1) for n in range(n_features)]
 properties = ["Low shear visc.","High shear visc.","Toughness","Stress at break","Strain at break"]
 
