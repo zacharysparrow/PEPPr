@@ -15,8 +15,19 @@ pandas 	1.5.3
 
 ## Instructions
 
-After installing the required packages and cloning this repository, the python script for evaluating the PEPPr ensemble on a given data set can be run with the following command:
+After installing the required packages and cloning this repository, the PEPPr ensemble can be trained with the following command (UNIX systems):
+```
+bash train_ensemble.sh
+```
+followed by the number of neural networks you want in the ensemble. To train just a single network (useful for testing -- the script for evaluating PEPPr assumes an ensemble was trained using the above Bash script), one can use the python script directly:
+```
+python train_peppr.py
+```
+
+The python script for evaluating the PEPPr ensemble on a given data set can be run with the following command:
+```
 python eval_peppr.py /data/path.csv
+```
 where /data/path.csv points to the .csv file that contains the features for the data that you would like to use to evaluate the PEPPr model. 
 
 For example, inference on the test set using PEPPr can be performed via:
@@ -34,19 +45,15 @@ Strain at break: %
 Standard deviations are computed in the logarithmically-transformed space and can be used to gauge model uncertainty for each prediction.
 
 IDs for the inverse and valorization set are in the form:  
+
 X-X-X-X-X-X-X-X-X-X  
+
 where each X corresponds to the fraction of the following base polymers used to "computationally blend" the data point:  
+
 PE38 V3 - PE98 V2 - PE121 - PE198 - PE277 - PE8 V2 - PE18 - PE357 V3 - commercial degraded - post consumer degraded  
-Note that the commercial degraded and post comsumer degraded entries are not applicable for the inverse set, resulting in IDs that contain two fewer entries.
 
-Inference on all of the data sets included herein should run in a matter of seconds on a standard desktop or laptop computer.
-
-We note that all ML models are stored in models/ with the .pt file extension, so no training is required to use PEPPr.
-Please see eval_peppr.py for a demonstration of how to load the models and use them for inference.
+Note that the commercial degraded and post comsumer degraded entries are not applicable for the inverse set, resulting in IDs that contain two fewer entries. Inference on all of the data sets included herein should run in a matter of seconds on a standard desktop or laptop computer.
 
 ## Reference
 If you use this repository, please cite the following work:
 **COMING SOON**
-
-## TODO
-- add reference
