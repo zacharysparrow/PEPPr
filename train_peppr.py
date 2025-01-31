@@ -7,7 +7,6 @@ import torch.optim as optim
 from torch.utils.data import Dataset
 from sklearn.preprocessing import StandardScaler
 
-import matplotlib.pyplot as plt
 import pandas as pd
 import csv
 import pickle
@@ -59,7 +58,7 @@ y_test = torch.tensor(y_test_data, dtype=torch.float32)
 
 ### Define ANN
 layers = [nn.Linear(n_features, nnwidth), nn.ELU()]
-for _ in range(15):
+for _ in range(nlayers):
     layers.extend([nn.Linear(nnwidth, nnwidth), nn.ELU()])
 layers.append(nn.Linear(nnwidth, n_props))
 model = nn.Sequential(*layers)
