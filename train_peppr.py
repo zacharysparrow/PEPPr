@@ -29,7 +29,8 @@ property_names = ["Low shear visc","High shear visc","Toughness","Stress at brea
 featureids = ['x'+str(n+1) for n in range(n_features)]
 n_props = len(property_names)
 # Regression data
-train_datafile = "data/training_set.csv"
+#train_datafile = "data/training_set.csv"
+train_datafile = "data/extended_training_set.csv"
 train_file = pd.read_csv(train_datafile)
 trainx_file = train_file[featureids]
 trainy_file = train_file[property_names]
@@ -45,7 +46,8 @@ y = torch.tensor(y, dtype=torch.float32)
 y_train = torch.tensor(y_train, dtype=torch.float32)
 
 # Import test dataset seperately
-test_datafile = "data/test_set.csv"
+#test_datafile = "data/test_set.csv"
+test_datafile = "data/extended_test_set.csv"
 test_file = pd.read_csv(test_datafile)
 testid = test_file["ID"]
 testx_file = test_file[featureids]
@@ -63,7 +65,17 @@ for _ in range(nlayers):
 layers.append(nn.Linear(nnwidth, n_props))
 model = nn.Sequential(*layers)
 
-mae_loss = nn.L1Loss()
+#mae_loss = nn.L1Loss()
+def mae_loss(input_tensor, target_tensor):
+    nan_mask = ~torch.isnan(input_tensor) & ~torch.isnan(target_tensor)
+    filtered_input = input_tensor[nan_mask]
+    filtered_target = target_tensor[nan_mask]
+    if filtered_input.numel() == 0:
+        return torch.tensor(0.0, requires_grad=True, device=input_tensor.device) # Return 0 loss if no valid elements exist
+    else:
+        loss_fn = nn.L1Loss(reduction='mean')
+        loss = loss_fn(filtered_input, filtered_target)
+        return loss
 
 optimizer = optim.Adam(model.parameters(), lr=train_rate, weight_decay=0.0)
 ###

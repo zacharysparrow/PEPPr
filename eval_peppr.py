@@ -32,7 +32,7 @@ train_predictions = []
 test_predictions = []
 for i in range(n_models):
     ### Load and run the model ###
-    model = torch.load('models/peppr_'+str(i+1)+'.pt')
+    model = torch.load('models/peppr_'+str(i+1)+'.pt', weights_only=False)
     model.eval()
     models_result = np.array(model(x_test).data.numpy())
     models_result = sc_y.inverse_transform(models_result)
