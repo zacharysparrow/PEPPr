@@ -16,12 +16,12 @@ if len(sys.argv) == 2:
     ann_id_num = str(sys.argv[1])
 
 ### Some hyperparameters ###
-n_features = 15
-nlayers = 15 
-nnwidth = 50 
+n_features = 15 #15
+nlayers = 15 #15
+nnwidth = 50 #50
 
-n_epochs = 1000
-train_rate = 0.001
+n_epochs = 2000 #1000
+train_rate = 0.001 #0.001
 ###
 
 ### Load data ###
@@ -29,8 +29,8 @@ property_names = ["Low shear visc","High shear visc","Toughness","Stress at brea
 featureids = ['x'+str(n+1) for n in range(n_features)]
 n_props = len(property_names)
 # Regression data
-#train_datafile = "data/training_set.csv"
-train_datafile = "data/extended_training_set.csv"
+train_datafile = "data/training_set.csv"
+#train_datafile = "data/extended_training_set.csv"
 train_file = pd.read_csv(train_datafile)
 trainx_file = train_file[featureids]
 trainy_file = train_file[property_names]
@@ -46,8 +46,8 @@ y = torch.tensor(y, dtype=torch.float32)
 y_train = torch.tensor(y_train, dtype=torch.float32)
 
 # Import test dataset seperately
-#test_datafile = "data/test_set.csv"
-test_datafile = "data/extended_test_set.csv"
+test_datafile = "data/test_set.csv"
+#test_datafile = "data/extended_test_set.csv"
 test_file = pd.read_csv(test_datafile)
 testid = test_file["ID"]
 testx_file = test_file[featureids]
